@@ -1,0 +1,79 @@
+
+# ============================================================
+# SML + AWL — Tri thức nội bộ (không track lên remote)
+# ============================================================
+
+# Bộ kit SML (rules, workflows, skills, tools)
+.knowledge/
+
+# Agent Work Log — nhật ký làm việc của agent
+awl/
+
+# Wiki tri thức — agent quản lý, tra cứu nội bộ
+wiki/
+
+# Tài liệu gốc — specs, docs API, papers
+raw/
+
+# Tài liệu dự án — handover, bugfix, ghi chú
+docs/
+
+# ============================================================
+# File cấu hình Agent — chứa context dự án
+# ============================================================
+AGENTS.md
+GEMINI.md
+CLAUDE.md
+.cursorrules
+.windsurfrules
+
+# ============================================================
+# Thông tin nhạy cảm — BẮT BUỘC KHÔNG TRACK
+# ============================================================
+
+# Biến môi trường
+.env
+.env.*
+.env.local
+.env.production
+.env.staging
+
+# Khóa bí mật và chứng chỉ
+*.pem
+*.key
+*.cert
+*.p12
+*.pfx
+*.jks
+
+# Token và credentials
+**/secrets/
+**/credentials/
+service-account*.json
+firebase-adminsdk*.json
+
+# ============================================================
+# File tạm và IDE
+# ============================================================
+.obsidian/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Wiki Visualizer — node_modules tự cài
+wiki-server.js
+
+# ============================================================
+# Next.js — Build artifacts và dependencies
+# ============================================================
+node_modules/
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+
+# Package locks (tùy chọn — có thể bỏ nếu muốn track)
+# package-lock.json
