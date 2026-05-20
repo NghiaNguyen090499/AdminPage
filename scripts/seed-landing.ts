@@ -241,7 +241,7 @@ async function seed() {
       section: {
         sectionType: "faq",
         title: "Câu hỏi thường gặp",
-        sortOrder: 12,
+        sortOrder: 13,
       },
       items: [
         { itemType: "faq", title: "ASA khác gì chatbot thông thường?", description: "ASA tập trung vào tư vấn, thu lead, phân loại nhu cầu và hỗ trợ sale.", metadata: { answer: "ASA không chỉ trả lời FAQ. Hệ thống được thiết kế để tư vấn theo dữ liệu doanh nghiệp, thu thập thông tin lead, phân loại nhu cầu và chuyển dữ liệu cho đội sale/tư vấn xử lý tiếp." }, sortOrder: 0 },
@@ -254,10 +254,78 @@ async function seed() {
     },
     {
       section: {
+        sectionType: "pricing",
+        title: "Bảng giá triển khai ASA",
+        subtitle: "Chọn gói phù hợp để bắt đầu thử nghiệm, vận hành nhỏ hoặc triển khai đầy đủ cho đội tư vấn.",
+        sortOrder: 12,
+      },
+      items: [
+        {
+          itemType: "pricing_plan",
+          title: "Gói demo",
+          description: "Phù hợp để xem thử luồng tư vấn ASA và đánh giá mức độ phù hợp với nghiệp vụ.",
+          linkUrl: "/contact?intent=asa-demo",
+          linkText: "Đăng ký demo",
+          metadata: {
+            price: "Miễn phí",
+            period: "30 phút",
+            currency: "",
+            features: [
+              "Demo luồng tư vấn mẫu theo ngành",
+              "Tư vấn dữ liệu cần chuẩn bị",
+              "Đề xuất phạm vi pilot ban đầu",
+            ],
+            isPopular: false,
+          },
+          sortOrder: 0,
+        },
+        {
+          itemType: "pricing_plan",
+          title: "Starter",
+          description: "Dành cho doanh nghiệp muốn chạy thử ASA trên một kênh chính với phạm vi rõ ràng.",
+          linkUrl: "/contact?intent=asa-starter",
+          linkText: "Chọn gói Starter",
+          metadata: {
+            price: "599.000đ",
+            period: "tháng",
+            currency: "",
+            features: [
+              "1 kênh tư vấn chính",
+              "Flow hỏi đáp và thu lead cơ bản",
+              "Theo dõi hội thoại và lead đầu vào",
+            ],
+            isPopular: true,
+            badge: "Phổ biến",
+          },
+          sortOrder: 1,
+        },
+        {
+          itemType: "pricing_plan",
+          title: "Business",
+          description: "Dành cho đội sale/tư vấn cần triển khai nhiều nghiệp vụ, dữ liệu và báo cáo vận hành.",
+          linkUrl: "/contact?intent=asa-business",
+          linkText: "Tư vấn gói Business",
+          metadata: {
+            price: "4.999.999đ",
+            period: "tháng",
+            currency: "",
+            features: [
+              "Nhiều flow tư vấn theo nhóm khách",
+              "Tích hợp dữ liệu sản phẩm/dịch vụ",
+              "Dashboard KPI và phân loại lead",
+            ],
+            isPopular: false,
+          },
+          sortOrder: 2,
+        },
+      ],
+    },
+    {
+      section: {
         sectionType: "cta_footer",
         title: "Sẵn sàng xem ASA phù hợp với doanh nghiệp của bạn như thế nào?",
         subtitle: "Đăng ký demo 30 phút để ARAR tư vấn flow chatbot, dữ liệu cần chuẩn bị và phạm vi pilot phù hợp.",
-        sortOrder: 13,
+        sortOrder: 14,
       },
       items: [
         { itemType: "cta", title: "Đăng ký demo ASA 30 phút", linkUrl: "/contact?intent=asa-demo", linkText: "Đăng ký demo ASA 30 phút", sortOrder: 0 },
@@ -269,7 +337,7 @@ async function seed() {
         sectionType: "custom",
         title: "Thông tin nên có trong form đăng ký demo",
         subtitle: "Form nên ngắn, đủ để ARAR hiểu nhanh nhu cầu và chuẩn bị buổi demo.",
-        sortOrder: 14,
+        sortOrder: 15,
       },
       items: [
         { itemType: "custom", title: "Họ và tên", metadata: { fieldType: "text", required: true }, sortOrder: 0 },
