@@ -172,6 +172,7 @@ export function SectionItemsEditor({
                     {item.itemType === "testimonial" && `— ${(item.metadata as Record<string, unknown>).author}, ${(item.metadata as Record<string, unknown>).company}`}
                     {item.itemType === "pricing_plan" && `${(item.metadata as Record<string, unknown>).currency || "$"}${(item.metadata as Record<string, unknown>).price}/${(item.metadata as Record<string, unknown>).period || "tháng"}`}
                     {item.itemType === "step" && `Bước ${(item.metadata as Record<string, unknown>).stepNumber}`}
+                    {item.itemType === "custom" && Array.isArray((item.metadata as Record<string, unknown>).example) && `${((item.metadata as Record<string, unknown>).example as unknown[]).length} dòng ví dụ`}
                   </div>
                 )}
               </div>
@@ -264,6 +265,12 @@ function ItemForm({
   const [metaPrefix, setMetaPrefix] = useState((meta.prefix as string) || "");
   const [metaStepNumber, setMetaStepNumber] = useState(String(meta.stepNumber || ""));
   const [metaAnswer, setMetaAnswer] = useState((meta.answer as string) || "");
+  const [metaBefore, setMetaBefore] = useState((meta.before as string) || "");
+  const [metaAfter, setMetaAfter] = useState((meta.after as string) || "");
+  const [metaExample, setMetaExample] = useState((meta.example as string[])?.join("\n") || "");
+  const [metaFieldType, setMetaFieldType] = useState((meta.fieldType as string) || "");
+  const [metaOptions, setMetaOptions] = useState((meta.options as string[])?.join("\n") || "");
+  const [metaRequired, setMetaRequired] = useState(!!meta.required);
 
   /** Build metadata object từ state */
   function buildMetadata(): Record<string, unknown> | null {
@@ -282,6 +289,20 @@ function ItemForm({
         return { stepNumber: parseInt(metaStepNumber) || sortOrder + 1 };
       case "faq":
         return { answer: metaAnswer };
+      case "custom": {
+        const metadata: Record<string, unknown> = {};
+        const example = metaExample.split("\n").map((line) => line.trim()).filter(Boolean);
+        const options = metaOptions.split("\n").map((line) => line.trim()).filter(Boolean);
+
+        if (metaBefore) metadata.before = metaBefore;
+        if (metaAfter) metadata.after = metaAfter;
+        if (example.length > 0) metadata.example = example;
+        if (metaFieldType) metadata.fieldType = metaFieldType;
+        if (options.length > 0) metadata.options = options;
+        if (metaFieldType) metadata.required = metaRequired;
+
+        return Object.keys(metadata).length > 0 ? metadata : null;
+      }
       default:
         return null;
     }
@@ -385,7 +406,7 @@ function ItemForm({
         )}
 
         {/* CTA fields */}
-        {["cta", "feature", "pricing_plan"].includes(itemType) && (
+        {["cta", "feature", "pricing_plan", "custom"].includes(itemType) && (
           <>
             <div>
               <label className="block text-xs text-[var(--muted-foreground)] mb-1">Link URL</label>
@@ -490,6 +511,43 @@ function ItemForm({
             <label className="block text-xs text-[var(--muted-foreground)] mb-1">Câu trả lời chi tiết</label>
             <textarea value={metaAnswer} onChange={(e) => setMetaAnswer(e.target.value)} rows={3} className="w-full px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--background)] text-sm resize-none" placeholder="Câu trả lời đầy đủ..." />
           </div>
+        )}
+
+        {/* Custom metadata */}
+        {itemType === "custom" && (
+          <>
+            <div>
+              <label className="block text-xs text-[var(--muted-foreground)] mb-1">Before (so sánh trước/sau)</label>
+              <input type="text" value={metaBefore} onChange={(e) => setMetaBefore(e.target.value)} className="w-full px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--background)] text-sm" placeholder="Khách hỏi nhưng chờ sale trả lời" />
+            </div>
+            <div>
+              <label className="block text-xs text-[var(--muted-foreground)] mb-1">After (so sánh trước/sau)</label>
+              <input type="text" value={metaAfter} onChange={(e) => setMetaAfter(e.target.value)} className="w-full px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--background)] text-sm" placeholder="AI phản hồi ngay 24/7" />
+            </div>
+            <div className="col-span-2">
+              <label className="block text-xs text-[var(--muted-foreground)] mb-1">Ví dụ hội thoại (mỗi dòng 1 câu)</label>
+              <textarea value={metaExample} onChange={(e) => setMetaExample(e.target.value)} rows={5} className="w-full px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--background)] text-sm resize-y" placeholder={"Khách: Em cần mua điện thoại dưới 8 triệu...\nASA: Anh/chị có thể tham khảo iPhone 12...\nASA: Anh/chị đang ở khu vực nào..."} />
+            </div>
+            <div>
+              <label className="block text-xs text-[var(--muted-foreground)] mb-1">Loại field form</label>
+              <select value={metaFieldType} onChange={(e) => setMetaFieldType(e.target.value)} className="w-full px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--background)] text-sm">
+                <option value="">Không phải field form</option>
+                <option value="text">Text</option>
+                <option value="tel">Phone</option>
+                <option value="email">Email</option>
+                <option value="select">Select</option>
+                <option value="textarea">Textarea</option>
+              </select>
+            </div>
+            <div className="flex items-center gap-2 pt-6">
+              <input type="checkbox" checked={metaRequired} onChange={(e) => setMetaRequired(e.target.checked)} id="custom-required" disabled={!metaFieldType} />
+              <label htmlFor="custom-required" className="text-xs text-[var(--muted-foreground)]">Field bắt buộc</label>
+            </div>
+            <div className="col-span-2">
+              <label className="block text-xs text-[var(--muted-foreground)] mb-1">Options cho select (mỗi dòng 1 lựa chọn)</label>
+              <textarea value={metaOptions} onChange={(e) => setMetaOptions(e.target.value)} rows={3} className="w-full px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--background)] text-sm resize-y" placeholder={"Bán lẻ điện thoại\nTrường học / tuyển sinh\nDịch vụ B2B"} />
+            </div>
+          </>
         )}
 
         {/* Sort order */}

@@ -1,174 +1,314 @@
 /**
  * @nhom        : Scripts
- * @chucnang    : Tạo dữ liệu mẫu Landing Page cho AI Sales Assistant
+ * @chucnang    : Tạo/cập nhật dữ liệu mẫu Landing Page cho ASA - AI Sales Assistant
  * @lienquan    : src/lib/db/schema.ts, src/lib/db/queries/landing.ts
  * @alias       : seed-landing
  *
  * Chạy: npx dotenv -e .env.local -- npx tsx scripts/seed-landing.ts
  */
+import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { landingPages, landingSections, landingItems } from "../src/lib/db/schema";
+import { landingItems, landingPages, landingSections } from "../src/lib/db/schema";
 
 const connectionString = process.env.DATABASE_URL!;
 const client = postgres(connectionString, { prepare: false, max: 1 });
 const db = drizzle(client);
 
 async function seed() {
-  console.log("🌱 Bắt đầu tạo dữ liệu mẫu Landing Page...\n");
+  console.log("Bat dau tao/cap nhat du lieu Landing Page ASA...\n");
 
-  // 1. Tạo Landing Page
+  await db.delete(landingPages).where(eq(landingPages.slug, "ai-sales-assistant"));
+
   const [page] = await db.insert(landingPages).values({
     slug: "ai-sales-assistant",
-    title: "AI Sales Assistant",
-    description: "Trang giới thiệu sản phẩm AI Sales Assistant — trợ lý bán hàng thông minh",
+    title: "ASA - AI Sales Assistant",
+    description: "Landing page B2B cho ASA - giai phap AI Sales Assistant cua ARAR",
     status: "published",
-    seoTitle: "AI Sales Assistant — Tăng 300% Doanh Thu Bán Hàng",
-    seoDescription: "Trợ lý bán hàng AI 24/7 — tự động tư vấn, chốt đơn, phân tích hành vi khách hàng. Dùng thử miễn phí.",
+    seoTitle: "ASA - AI Sales Assistant cho tu van khach hang va thu lead online",
+    seoDescription: "ASA giup doanh nghiep tu dong tu van khach hang 24/7, thu thap lead, phan loai nhu cau va chuyen du lieu cho doi sale.",
     publishedAt: new Date(),
   }).returning();
-  console.log(`✅ Tạo Landing Page: ${page.title} (${page.slug})`);
+  console.log(`Tao Landing Page: ${page.title} (${page.slug})`);
 
-  // 2. Tạo Sections + Items
   const sectionsData = [
-    // ========== HERO ==========
     {
-      section: { sectionType: "hero", title: "Tăng 300% Doanh Thu Với AI Sales Assistant", subtitle: "Trợ lý bán hàng AI 24/7 — tự động tư vấn, chốt đơn, phân tích hành vi khách hàng thông minh.", sortOrder: 0 },
+      section: {
+        sectionType: "hero",
+        title: "ASA - AI Sales Assistant giúp doanh nghiệp tư vấn khách hàng 24/7 và không bỏ lỡ lead online",
+        subtitle: "Tự động trả lời khách hàng, tư vấn theo nhu cầu, thu thập thông tin lead và chuyển dữ liệu cho đội sale/tư vấn xử lý tiếp.",
+        description: "Phù hợp cho chuỗi bán lẻ, chuỗi điện thoại, trường học, trung tâm giáo dục và các doanh nghiệp có nhiều khách hàng hỏi qua Facebook, Zalo, website.",
+        sortOrder: 0,
+      },
       items: [
-        { itemType: "cta", title: "Dùng thử miễn phí", linkUrl: "/trial", linkText: "Dùng thử miễn phí", sortOrder: 0 },
-        { itemType: "cta", title: "Xem Demo", linkUrl: "/demo", linkText: "Xem Demo", sortOrder: 1 },
+        { itemType: "cta", title: "Đăng ký demo ASA 30 phút", linkUrl: "/contact?intent=asa-demo", linkText: "Đăng ký demo ASA 30 phút", sortOrder: 0 },
+        { itemType: "cta", title: "Nhận tư vấn flow chatbot", linkUrl: "/contact?intent=chatbot-flow", linkText: "Nhận tư vấn flow chatbot", sortOrder: 1 },
       ],
     },
-    // ========== PAIN POINTS ==========
     {
-      section: { sectionType: "pain_points", title: "Vấn Đề Doanh Nghiệp Đang Gặp Phải", sortOrder: 1 },
+      section: {
+        sectionType: "pain_points",
+        title: "Doanh nghiệp đang mất lead online mỗi ngày mà không nhận ra",
+        subtitle: "Khách hàng rời đi rất nhanh khi không được phản hồi đúng lúc hoặc không được tư vấn đủ thông tin.",
+        description: "Với ASA, mỗi cuộc hội thoại online có thể trở thành một cơ hội bán hàng được ghi nhận, phân loại và chuyển tiếp cho đội sale.",
+        sortOrder: 1,
+      },
       items: [
-        { itemType: "pain_point", icon: "⏰", title: "Mất thời gian trả lời thủ công", description: "Nhân viên sales dành 60% thời gian trả lời các câu hỏi lặp đi lặp lại thay vì chốt đơn.", sortOrder: 0 },
-        { itemType: "pain_point", icon: "😴", title: "Bỏ lỡ khách hàng ngoài giờ", description: "70% tin nhắn từ khách hàng đến ngoài giờ làm việc — không ai phản hồi.", sortOrder: 1 },
-        { itemType: "pain_point", icon: "📉", title: "Tỷ lệ chuyển đổi thấp", description: "Thiếu cá nhân hóa và tốc độ phản hồi chậm khiến tỷ lệ chốt đơn chỉ đạt 2-3%.", sortOrder: 2 },
-        { itemType: "pain_point", icon: "🔍", title: "Không hiểu hành vi khách hàng", description: "Thiếu dữ liệu để phân tích nhu cầu thực sự và đưa ra đề xuất phù hợp.", sortOrder: 3 },
+        { itemType: "pain_point", icon: "⏱️", title: "Inbox không được trả lời ngay", description: "Khách hàng cần phản hồi nhanh trên Facebook, Zalo hoặc website, đặc biệt ngoài giờ hành chính và giờ cao điểm.", sortOrder: 0 },
+        { itemType: "pain_point", icon: "📚", title: "Câu hỏi lặp lại quá nhiều", description: "Giá, sản phẩm, học phí, lịch tư vấn, chính sách và địa chỉ thường lặp lại, làm đội tư vấn mất nhiều thời gian.", sortOrder: 1 },
+        { itemType: "pain_point", icon: "🧾", title: "Không thu được thông tin lead", description: "Nhiều cuộc hội thoại kết thúc mà chưa có số điện thoại, nhu cầu, ngân sách, khu vực hoặc thông tin khách hàng.", sortOrder: 2 },
+        { itemType: "pain_point", icon: "🧩", title: "Dữ liệu hội thoại rời rạc", description: "Quản lý khó biết khách quan tâm sản phẩm/dịch vụ nào, lead nào cần follow-up và hiệu quả tư vấn online ra sao.", sortOrder: 3 },
+        { itemType: "pain_point", icon: "🎚️", title: "Chất lượng tư vấn không đồng đều", description: "Mỗi nhân viên có cách hỏi và ghi nhận thông tin khác nhau, khiến trải nghiệm khách hàng thiếu nhất quán.", sortOrder: 4 },
       ],
     },
-    // ========== SOLUTION ==========
     {
-      section: { sectionType: "solution", title: "Giải Pháp: AI Sales Assistant", subtitle: "Trợ lý bán hàng AI hoạt động 24/7, tự động tư vấn và chốt đơn với độ chính xác cao.", description: "AI Sales Assistant sử dụng công nghệ NLP tiên tiến để hiểu ngữ cảnh cuộc hội thoại, phân tích ý định khách hàng, và đưa ra phản hồi cá nhân hóa — tất cả chỉ trong vài giây.", sortOrder: 2 },
-      items: [],
-    },
-    // ========== FEATURES ==========
-    {
-      section: { sectionType: "features", title: "Tính Năng Vượt Trội", subtitle: "Được thiết kế để tối ưu hóa mọi khâu trong quy trình bán hàng", sortOrder: 3 },
+      section: {
+        sectionType: "solution",
+        title: "ASA là gì?",
+        subtitle: "ASA không phải là chatbot FAQ đơn thuần.",
+        description: "ASA là hệ thống AI chatbot hỗ trợ bán hàng và tư vấn khách hàng, được thiết kế cho doanh nghiệp cần xử lý nhiều hội thoại online trên Facebook, Zalo, website hoặc các kênh digital khác. ASA hoạt động như một lớp AI Sales Operator giúp biến hội thoại thành dữ liệu bán hàng.",
+        sortOrder: 2,
+      },
       items: [
-        { itemType: "feature", icon: "🤖", title: "Tự động tư vấn 24/7", description: "AI phản hồi khách hàng tức thì, bất kể ngày đêm. Không bỏ lỡ bất kỳ cơ hội bán hàng nào.", sortOrder: 0 },
-        { itemType: "feature", icon: "🎯", title: "Cá nhân hóa thông minh", description: "Phân tích hành vi duyệt web, lịch sử mua hàng để đề xuất sản phẩm phù hợp nhất cho từng khách.", sortOrder: 1 },
-        { itemType: "feature", icon: "📊", title: "Phân tích & Báo cáo", description: "Dashboard trực quan theo dõi hiệu suất bán hàng, tỷ lệ chuyển đổi, revenue theo thời gian thực.", sortOrder: 2 },
-        { itemType: "feature", icon: "🔗", title: "Tích hợp đa kênh", description: "Kết nối Facebook Messenger, Zalo, Website chat, Email — quản lý tất cả từ một nơi.", sortOrder: 3 },
-        { itemType: "feature", icon: "🧠", title: "Học từ dữ liệu", description: "AI liên tục cải thiện qua mỗi cuộc hội thoại. Càng dùng nhiều, càng chính xác.", sortOrder: 4 },
-        { itemType: "feature", icon: "⚡", title: "Chốt đơn tự động", description: "Tự động tạo đơn hàng, gửi link thanh toán, và follow-up khách hàng chưa hoàn tất.", sortOrder: 5 },
+        { itemType: "feature", icon: "💬", title: "Hiểu nhu cầu khách hàng", description: "Nhận diện câu hỏi, ngữ cảnh và nhu cầu ban đầu của khách để dẫn dắt hội thoại đúng hướng.", sortOrder: 0 },
+        { itemType: "feature", icon: "🎯", title: "Tư vấn sản phẩm/dịch vụ phù hợp", description: "Gợi ý nội dung tư vấn dựa trên dữ liệu doanh nghiệp cung cấp.", sortOrder: 1 },
+        { itemType: "feature", icon: "📥", title: "Thu thập và phân loại lead", description: "Ghi nhận thông tin quan trọng, phân loại mức độ quan tâm và chuyển tiếp cho đội sale/tư vấn.", sortOrder: 2 },
+        { itemType: "feature", icon: "📈", title: "Tạo dữ liệu KPI tư vấn online", description: "Giúp quản lý theo dõi số hội thoại, lead, nhu cầu và chất lượng tư vấn.", sortOrder: 3 },
       ],
     },
-    // ========== HOW IT WORKS ==========
     {
-      section: { sectionType: "how_it_works", title: "Cách Hoạt Động", subtitle: "Chỉ 3 bước đơn giản để bắt đầu", sortOrder: 4 },
+      section: {
+        sectionType: "custom",
+        title: "Từ hội thoại rời rạc thành hệ thống lead có dữ liệu",
+        subtitle: "ASA chuẩn hóa cách tư vấn, cách thu lead và cách chuyển dữ liệu cho đội sale.",
+        sortOrder: 3,
+      },
       items: [
-        { itemType: "step", icon: "1️⃣", title: "Kết nối kênh bán hàng", description: "Tích hợp AI với website, Facebook, Zalo hoặc bất kỳ kênh nào bạn đang sử dụng.", metadata: { stepNumber: 1 }, sortOrder: 0 },
-        { itemType: "step", icon: "2️⃣", title: "Huấn luyện AI", description: "Upload catalog sản phẩm, FAQ, script bán hàng — AI tự học và chuẩn bị sẵn sàng.", metadata: { stepNumber: 2 }, sortOrder: 1 },
-        { itemType: "step", icon: "3️⃣", title: "Tự động bán hàng", description: "AI bắt đầu tư vấn, chốt đơn, và báo cáo kết quả. Bạn chỉ cần theo dõi dashboard.", metadata: { stepNumber: 3 }, sortOrder: 2 },
+        { itemType: "custom", icon: "↔️", title: "Khách hỏi nhưng chờ sale trả lời", description: "Sau khi có ASA: AI phản hồi ngay 24/7 và giữ cuộc hội thoại tiếp tục.", metadata: { before: "Khách hỏi nhưng chờ sale trả lời", after: "AI phản hồi ngay 24/7" }, sortOrder: 0 },
+        { itemType: "custom", icon: "↔️", title: "Inbox rời rạc, khó quản lý", description: "Sau khi có ASA: lead được ghi nhận, phân loại và chuyển tiếp theo quy trình.", metadata: { before: "Inbox rời rạc, khó quản lý", after: "Lead được ghi nhận và phân loại" }, sortOrder: 1 },
+        { itemType: "custom", icon: "↔️", title: "Nhân viên hỏi thiếu thông tin", description: "Sau khi có ASA: hệ thống tự động hỏi nhu cầu, ngân sách, khu vực và số điện thoại.", metadata: { before: "Nhân viên hỏi thiếu thông tin", after: "ASA tự động hỏi thông tin quan trọng" }, sortOrder: 2 },
+        { itemType: "custom", icon: "↔️", title: "Khó đo hiệu quả online", description: "Sau khi có ASA: dashboard theo dõi lead, conversion và chất lượng hội thoại.", metadata: { before: "Khó đo hiệu quả online", after: "Theo dõi được lead và KPI" }, sortOrder: 3 },
       ],
     },
-    // ========== STATS ==========
     {
-      section: { sectionType: "stats", title: "Con Số Ấn Tượng", sortOrder: 5 },
-      items: [
-        { itemType: "stat", title: "Tăng doanh thu", metadata: { value: "300", suffix: "%", prefix: "+" }, sortOrder: 0 },
-        { itemType: "stat", title: "Thời gian phản hồi", metadata: { value: "3", suffix: "s", prefix: "<" }, sortOrder: 1 },
-        { itemType: "stat", title: "Khách hàng tin dùng", metadata: { value: "1,000", suffix: "+", prefix: "" }, sortOrder: 2 },
-        { itemType: "stat", title: "Tỷ lệ hài lòng", metadata: { value: "98", suffix: "%", prefix: "" }, sortOrder: 3 },
-      ],
-    },
-    // ========== TESTIMONIALS ==========
-    {
-      section: { sectionType: "testimonials", title: "Khách Hàng Nói Gì", subtitle: "Hơn 1,000 doanh nghiệp đã tin dùng", sortOrder: 6 },
-      items: [
-        { itemType: "testimonial", description: "AI Sales Assistant giúp chúng tôi tăng 45% tỷ lệ chốt đơn chỉ trong tháng đầu tiên. Khách hàng được phản hồi ngay lập tức, dù là 2 giờ sáng.", metadata: { author: "Nguyễn Văn Minh", role: "CEO", company: "TechCorp Vietnam", rating: 5 }, sortOrder: 0 },
-        { itemType: "testimonial", description: "Trước đây team sales 5 người phải trực 24/7. Giờ AI xử lý 80% câu hỏi, team chỉ tập trung vào khách VIP.", metadata: { author: "Trần Thị Hoa", role: "Sales Director", company: "ShopEase", rating: 5 }, sortOrder: 1 },
-        { itemType: "testimonial", description: "Tích hợp chỉ mất 30 phút. Dashboard báo cáo rất trực quan. ROI đạt 500% sau 3 tháng sử dụng.", metadata: { author: "Lê Hoàng Nam", role: "Founder", company: "DigiMart", rating: 5 }, sortOrder: 2 },
-      ],
-    },
-    // ========== PRICING ==========
-    {
-      section: { sectionType: "pricing", title: "Bảng Giá", subtitle: "Lựa chọn gói phù hợp với quy mô doanh nghiệp", sortOrder: 7 },
+      section: {
+        sectionType: "custom",
+        title: "Use case theo ngành",
+        subtitle: "ASA có thể bắt đầu từ những nghiệp vụ rõ nhất của từng doanh nghiệp.",
+        sortOrder: 4,
+      },
       items: [
         {
-          itemType: "pricing_plan", title: "Starter", description: "Phù hợp cho cá nhân và doanh nghiệp nhỏ",
-          linkUrl: "/signup?plan=starter", linkText: "Bắt đầu miễn phí",
-          metadata: { price: "0", period: "tháng", currency: "đ", features: ["500 cuộc hội thoại/tháng", "1 kênh tích hợp", "Báo cáo cơ bản", "Hỗ trợ email"], isPopular: false },
+          itemType: "custom",
+          icon: "📱",
+          title: "ASA cho chuỗi bán lẻ điện thoại",
+          description: "Hỗ trợ tư vấn giá, tình trạng còn hàng, so sánh iPhone/Samsung/Xiaomi/Oppo, chọn máy theo ngân sách, trả góp, bảo hành và địa chỉ cửa hàng gần nhất.",
+          linkUrl: "/contact?intent=asa-phone-retail",
+          linkText: "Xem demo ASA cho chuỗi điện thoại",
+          metadata: {
+            example: [
+              "Khách: Em cần mua điện thoại dưới 8 triệu, pin tốt, chụp ảnh ổn.",
+              "ASA: Với nhu cầu pin tốt, chụp ảnh ổn trong tầm dưới 8 triệu, anh/chị có thể tham khảo iPhone 12 cũ đẹp, Xiaomi 15T hoặc Redmi Note 14 Pro tùy ưu tiên iOS, camera hay pin.",
+              "ASA: Anh/chị muốn máy mới hay máy đã qua sử dụng? Nếu ưu tiên chụp ảnh và hệ sinh thái Apple, iPhone 12 là lựa chọn hợp lý. Nếu muốn pin khỏe, sạc nhanh và màn hình lớn, em sẽ ưu tiên Xiaomi/Redmi.",
+              "ASA: Anh/chị đang ở khu vực nào để em kiểm tra cửa hàng gần nhất còn hàng, màu/bộ nhớ phù hợp và chương trình trả góp nếu cần?",
+            ],
+          },
           sortOrder: 0,
         },
         {
-          itemType: "pricing_plan", title: "Professional", description: "Cho doanh nghiệp đang phát triển",
-          linkUrl: "/signup?plan=pro", linkText: "Dùng thử 14 ngày",
-          metadata: { price: "1,990,000", period: "tháng", currency: "đ", features: ["Không giới hạn hội thoại", "5 kênh tích hợp", "Phân tích nâng cao", "API access", "Hỗ trợ 24/7", "Custom branding"], isPopular: true, badge: "Phổ biến nhất" },
+          itemType: "custom",
+          icon: "🏫",
+          title: "ASA cho trường học và tuyển sinh",
+          description: "Hỗ trợ phụ huynh hỏi về chương trình học, học phí, lịch tuyển sinh, độ tuổi/lớp phù hợp, xe đưa đón, lịch tham quan trường và quy trình đăng ký tư vấn.",
+          linkUrl: "/contact?intent=asa-school-admission",
+          linkText: "Xem demo ASA cho tuyển sinh trường học",
+          metadata: {
+            example: [
+              "Phụ huynh: Trường còn tuyển sinh lớp 1 không?",
+              "ASA: Dạ có. Anh/chị cho em hỏi bé sinh năm nào và gia đình mình đang ở khu vực nào ạ?",
+              "ASA: Em có thể hỗ trợ đặt lịch tham quan trường trong tuần này.",
+            ],
+          },
           sortOrder: 1,
         },
-        {
-          itemType: "pricing_plan", title: "Enterprise", description: "Giải pháp toàn diện cho doanh nghiệp lớn",
-          linkUrl: "/contact", linkText: "Liên hệ",
-          metadata: { price: "Liên hệ", period: "", currency: "", features: ["Mọi tính năng Professional", "Dedicated server", "SLA 99.9%", "Onboarding 1-1", "Custom AI training", "White-label solution"], isPopular: false },
-          sortOrder: 2,
-        },
       ],
     },
-    // ========== FAQ ==========
     {
-      section: { sectionType: "faq", title: "Câu Hỏi Thường Gặp", sortOrder: 8 },
+      section: {
+        sectionType: "features",
+        title: "Các tính năng chính của ASA",
+        subtitle: "Tập trung vào tư vấn, thu lead, chuyển sale và theo dõi hiệu quả.",
+        sortOrder: 5,
+      },
       items: [
-        { itemType: "faq", title: "AI Sales Assistant có thay thế nhân viên bán hàng không?", description: "Không, AI hoạt động như trợ lý hỗ trợ team sales.", metadata: { answer: "Không. AI Sales Assistant được thiết kế để hỗ trợ, không phải thay thế. AI xử lý các câu hỏi thường gặp và tư vấn ban đầu, giúp nhân viên sales tập trung vào các khách hàng tiềm năng cao và các deal phức tạp." }, sortOrder: 0 },
-        { itemType: "faq", title: "Mất bao lâu để tích hợp?", description: "Chỉ 30 phút cho tích hợp cơ bản.", metadata: { answer: "Tích hợp cơ bản (website chat) chỉ mất 30 phút với hướng dẫn step-by-step. Tích hợp đa kênh (Facebook, Zalo, Email) mất khoảng 1-2 giờ. Đội ngũ support sẽ hỗ trợ bạn trong suốt quá trình." }, sortOrder: 1 },
-        { itemType: "faq", title: "AI có hỗ trợ tiếng Việt không?", description: "Có, AI hỗ trợ đầy đủ tiếng Việt.", metadata: { answer: "Có! AI Sales Assistant được huấn luyện đặc biệt cho tiếng Việt, bao gồm cả tiếng lóng, từ ngữ địa phương, và các biến thể ngôn ngữ khác nhau. Ngoài ra còn hỗ trợ tiếng Anh và nhiều ngôn ngữ khác." }, sortOrder: 2 },
-        { itemType: "faq", title: "Dữ liệu khách hàng có được bảo mật không?", description: "Tuyệt đối bảo mật với mã hóa end-to-end.", metadata: { answer: "Tuyệt đối. Chúng tôi sử dụng mã hóa AES-256, SSL/TLS cho mọi kết nối, và tuân thủ GDPR. Dữ liệu được lưu trữ trên server đạt chuẩn ISO 27001. Bạn có toàn quyền kiểm soát và xóa dữ liệu bất cứ lúc nào." }, sortOrder: 3 },
-        { itemType: "faq", title: "Có thể dùng thử miễn phí không?", description: "Có, gói Starter hoàn toàn miễn phí.", metadata: { answer: "Có! Gói Starter hoàn toàn miễn phí với 500 cuộc hội thoại/tháng. Gói Professional có 14 ngày dùng thử không cần thẻ tín dụng. Bạn có thể nâng cấp hoặc hủy bất cứ lúc nào." }, sortOrder: 4 },
+        { itemType: "feature", icon: "🤖", title: "AI tư vấn 24/7", description: "Tự động trả lời khách hàng trên các kênh online theo dữ liệu và phạm vi tư vấn đã cấu hình.", sortOrder: 0 },
+        { itemType: "feature", icon: "📝", title: "Thu thập lead", description: "Lấy tên, số điện thoại, nhu cầu, ngân sách, khu vực và thông tin cần thiết cho đội sale/tư vấn.", sortOrder: 1 },
+        { itemType: "feature", icon: "🧠", title: "Tư vấn theo dữ liệu", description: "Gợi ý sản phẩm/dịch vụ dựa trên catalog, FAQ, chính sách và dữ liệu nghiệp vụ của doanh nghiệp.", sortOrder: 2 },
+        { itemType: "feature", icon: "🔥", title: "Phân loại khách hàng", description: "Nhận diện khách nóng, khách đang cân nhắc hoặc khách cần chăm sóc tiếp.", sortOrder: 3 },
+        { itemType: "feature", icon: "📤", title: "Chuyển sale xử lý", description: "Gửi thông tin khách hàng và ngữ cảnh hội thoại cho nhân viên phụ trách.", sortOrder: 4 },
+        { itemType: "feature", icon: "📊", title: "Dashboard KPI", description: "Theo dõi số lead, số hội thoại, tỷ lệ lấy số điện thoại, nhu cầu khách hàng và chất lượng tư vấn.", sortOrder: 5 },
       ],
     },
-    // ========== CTA FOOTER ==========
     {
-      section: { sectionType: "cta_footer", title: "Sẵn Sàng Tăng Doanh Thu?", subtitle: "Bắt đầu miễn phí ngay hôm nay — không cần thẻ tín dụng", sortOrder: 9 },
+      section: {
+        sectionType: "how_it_works",
+        title: "Quy trình hoạt động của ASA",
+        subtitle: "Từ khách nhắn tin đến dữ liệu lead và dashboard KPI.",
+        sortOrder: 6,
+      },
       items: [
-        { itemType: "cta", title: "Dùng thử miễn phí", linkUrl: "/trial", linkText: "Bắt đầu miễn phí", sortOrder: 0 },
-        { itemType: "cta", title: "Liên hệ tư vấn", linkUrl: "/contact", linkText: "Liên hệ tư vấn", sortOrder: 1 },
+        { itemType: "step", icon: "1", title: "Khách hàng nhắn tin", description: "Khách bắt đầu hội thoại qua Facebook, Zalo hoặc website.", metadata: { stepNumber: 1 }, sortOrder: 0 },
+        { itemType: "step", icon: "2", title: "ASA hiểu nhu cầu", description: "AI phân tích câu hỏi, nhận diện nhu cầu và tiếp tục hỏi thông tin cần thiết.", metadata: { stepNumber: 2 }, sortOrder: 1 },
+        { itemType: "step", icon: "3", title: "Tư vấn theo dữ liệu doanh nghiệp", description: "ASA truy xuất dữ liệu sản phẩm, dịch vụ, chính sách hoặc tuyển sinh để tư vấn.", metadata: { stepNumber: 3 }, sortOrder: 2 },
+        { itemType: "step", icon: "4", title: "Thu thập thông tin lead", description: "Hệ thống ghi nhận tên, số điện thoại, ngân sách, khu vực và nhu cầu cụ thể.", metadata: { stepNumber: 4 }, sortOrder: 3 },
+        { itemType: "step", icon: "5", title: "Chuyển sale và theo dõi KPI", description: "Đội sale/tư vấn nhận lead, còn quản lý theo dõi hiệu quả trên dashboard.", metadata: { stepNumber: 5 }, sortOrder: 4 },
+      ],
+    },
+    {
+      section: {
+        sectionType: "custom",
+        title: "Doanh nghiệp cần chuẩn bị gì để triển khai ASA?",
+        subtitle: "ASA có thể bắt đầu từ bộ dữ liệu đơn giản, sau đó mở rộng theo từng giai đoạn.",
+        description: "ARAR có thể hỗ trợ chuẩn hóa dữ liệu ban đầu để ASA vận hành theo đúng nghiệp vụ của từng doanh nghiệp.",
+        sortOrder: 7,
+      },
+      items: [
+        { itemType: "custom", icon: "📦", title: "Dữ liệu sản phẩm/dịch vụ", description: "Tên sản phẩm, mô tả, giá, chính sách, chương trình học hoặc dịch vụ cần tư vấn.", sortOrder: 0 },
+        { itemType: "custom", icon: "❓", title: "FAQ và chính sách", description: "Các câu hỏi thường gặp về giá, bảo hành, học phí, tuyển sinh, trả góp, đổi trả hoặc địa chỉ.", sortOrder: 1 },
+        { itemType: "custom", icon: "🏬", title: "Chi nhánh/cơ sở", description: "Địa chỉ cửa hàng, cơ sở trường, khu vực phục vụ và thông tin liên hệ.", sortOrder: 2 },
+        { itemType: "custom", icon: "🔁", title: "Quy trình chuyển lead", description: "Ai nhận lead, nhận qua kênh nào, thời gian phản hồi và tiêu chí lead đủ thông tin.", sortOrder: 3 },
+      ],
+    },
+    {
+      section: {
+        sectionType: "custom",
+        title: "ASA có thể triển khai trên nhiều kênh khách hàng",
+        subtitle: "Bắt đầu từ kênh chính, sau đó mở rộng theo nhu cầu vận hành.",
+        description: "ASA có thể triển khai trước trên Facebook Messenger hoặc website chatbot, sau đó mở rộng sang Zalo OA, CRM và các hệ thống dữ liệu nội bộ theo nhu cầu của doanh nghiệp.",
+        sortOrder: 8,
+      },
+      items: [
+        { itemType: "custom", icon: "💬", title: "Facebook Messenger", description: "Phù hợp với doanh nghiệp có lượng inbox lớn từ fanpage.", sortOrder: 0 },
+        { itemType: "custom", icon: "🌐", title: "Website chatbot", description: "Tư vấn khách truy cập website và thu lead ngay trên trang.", sortOrder: 1 },
+        { itemType: "custom", icon: "📲", title: "Zalo OA", description: "Có thể mở rộng theo mức độ sẵn sàng tích hợp và nhu cầu của doanh nghiệp.", sortOrder: 2 },
+        { itemType: "custom", icon: "🗂️", title: "Google Sheet / CRM / API", description: "Đồng bộ lead và dữ liệu hội thoại sang hệ thống vận hành hiện có.", sortOrder: 3 },
+      ],
+    },
+    {
+      section: {
+        sectionType: "stats",
+        title: "Theo dõi hiệu quả tư vấn online bằng KPI rõ ràng",
+        subtitle: "ASA không chỉ trả lời khách hàng. ASA giúp doanh nghiệp nhìn thấy dữ liệu bán hàng từ từng cuộc hội thoại.",
+        sortOrder: 9,
+      },
+      items: [
+        { itemType: "stat", title: "Hội thoại", description: "Tổng số cuộc trò chuyện, số khách mới, số khách quay lại", metadata: { value: "1", suffix: "", prefix: "" }, sortOrder: 0 },
+        { itemType: "stat", title: "Lead", description: "Số lead thu được, tỷ lệ lấy số điện thoại, tỷ lệ lead đủ thông tin", metadata: { value: "2", suffix: "", prefix: "" }, sortOrder: 1 },
+        { itemType: "stat", title: "Nhu cầu", description: "Sản phẩm/dịch vụ được hỏi nhiều nhất, ngân sách phổ biến", metadata: { value: "3", suffix: "", prefix: "" }, sortOrder: 2 },
+        { itemType: "stat", title: "Chuyển đổi", description: "Demo booking, lịch hẹn, khách quan tâm mua hàng hoặc đăng ký", metadata: { value: "4", suffix: "", prefix: "" }, sortOrder: 3 },
+      ],
+    },
+    {
+      section: {
+        sectionType: "custom",
+        title: "Bắt đầu với một pilot nhỏ trước khi triển khai toàn hệ thống",
+        subtitle: "Một pilot rõ phạm vi giúp doanh nghiệp kiểm chứng hiệu quả và tối ưu flow trước khi mở rộng.",
+        description: "Với dữ liệu đầu vào rõ ràng, ASA có thể triển khai phiên bản pilot trong khoảng 2-3 tuần.",
+        sortOrder: 10,
+      },
+      items: [
+        { itemType: "step", icon: "1", title: "Khảo sát nhu cầu", description: "Xác định ngành, kênh online, quy trình sale/tư vấn và mục tiêu pilot.", metadata: { stepNumber: 1 }, sortOrder: 0 },
+        { itemType: "step", icon: "2", title: "Chuẩn hóa dữ liệu", description: "Thu thập sản phẩm, dịch vụ, FAQ, chính sách và thông tin chi nhánh/cơ sở.", metadata: { stepNumber: 2 }, sortOrder: 1 },
+        { itemType: "step", icon: "3", title: "Thiết kế flow tư vấn", description: "Xây dựng luồng hỏi đáp theo từng nhóm khách hàng và tiêu chí lead.", metadata: { stepNumber: 3 }, sortOrder: 2 },
+        { itemType: "step", icon: "4", title: "Cấu hình, test và go-live", description: "Kết nối kênh, kiểm tra câu trả lời, vận hành thử và theo dõi KPI.", metadata: { stepNumber: 4 }, sortOrder: 3 },
+      ],
+    },
+    {
+      section: {
+        sectionType: "custom",
+        title: "Vì sao doanh nghiệp nên triển khai ASA cùng ARAR?",
+        subtitle: "ARAR xây ASA như một hệ thống hỗ trợ vận hành sale, có dữ liệu, KPI và khả năng cải tiến liên tục.",
+        sortOrder: 11,
+      },
+      items: [
+        { itemType: "custom", icon: "🧪", title: "AI ứng dụng thực tế", description: "Tập trung vào bài toán vận hành cụ thể thay vì chỉ trình diễn chatbot.", sortOrder: 0 },
+        { itemType: "custom", icon: "📱", title: "Kinh nghiệm với bán lẻ điện thoại", description: "Đã có hướng triển khai chatbot AI cho nghiệp vụ tư vấn trong lĩnh vực bán lẻ điện thoại.", sortOrder: 1 },
+        { itemType: "custom", icon: "🧬", title: "Xây theo dữ liệu riêng", description: "Flow tư vấn, câu trả lời và logic thu lead được thiết kế theo nghiệp vụ từng doanh nghiệp.", sortOrder: 2 },
+        { itemType: "custom", icon: "📊", title: "Dashboard và tối ưu vận hành", description: "Không chỉ trả lời tự động, ASA còn hỗ trợ theo dõi KPI và cải tiến chất lượng tư vấn.", sortOrder: 3 },
+      ],
+    },
+    {
+      section: {
+        sectionType: "faq",
+        title: "Câu hỏi thường gặp",
+        sortOrder: 12,
+      },
+      items: [
+        { itemType: "faq", title: "ASA khác gì chatbot thông thường?", description: "ASA tập trung vào tư vấn, thu lead, phân loại nhu cầu và hỗ trợ sale.", metadata: { answer: "ASA không chỉ trả lời FAQ. Hệ thống được thiết kế để tư vấn theo dữ liệu doanh nghiệp, thu thập thông tin lead, phân loại nhu cầu và chuyển dữ liệu cho đội sale/tư vấn xử lý tiếp." }, sortOrder: 0 },
+        { itemType: "faq", title: "ASA có dùng được cho Facebook, Zalo và website không?", description: "Có thể bắt đầu từ Facebook Messenger hoặc website chatbot, sau đó mở rộng.", metadata: { answer: "ASA có thể triển khai trước trên Facebook Messenger hoặc website chatbot. Zalo OA, CRM và các hệ thống dữ liệu nội bộ có thể được tích hợp theo từng giai đoạn tùy nhu cầu và mức độ sẵn sàng kỹ thuật." }, sortOrder: 1 },
+        { itemType: "faq", title: "Có cần dữ liệu sản phẩm đầy đủ ngay từ đầu không?", description: "Không nhất thiết. Có thể bắt đầu từ bộ dữ liệu cơ bản.", metadata: { answer: "Doanh nghiệp có thể bắt đầu bằng bộ dữ liệu cơ bản như sản phẩm/dịch vụ chính, FAQ, chính sách và quy trình chuyển lead. Sau pilot, dữ liệu có thể được mở rộng dần." }, sortOrder: 2 },
+        { itemType: "faq", title: "ASA có thay thế nhân viên sale không?", description: "Không. ASA hỗ trợ lọc nhu cầu và chuyển lead tốt hơn cho sale.", metadata: { answer: "ASA không thay thế đội sale. ASA xử lý tư vấn ban đầu, hỏi thông tin cần thiết, phân loại nhu cầu và giúp đội sale tập trung vào những lead có dữ liệu rõ hơn." }, sortOrder: 3 },
+        { itemType: "faq", title: "Thời gian triển khai bao lâu?", description: "Pilot thường có thể triển khai trong khoảng 2-3 tuần nếu dữ liệu rõ ràng.", metadata: { answer: "Với phạm vi pilot nhỏ và dữ liệu đầu vào rõ ràng, ASA thường có thể triển khai phiên bản đầu trong khoảng 2-3 tuần, sau đó tiếp tục tối ưu theo dữ liệu vận hành thực tế." }, sortOrder: 4 },
+        { itemType: "faq", title: "Có dashboard theo dõi không?", description: "Có. Dashboard theo dõi hội thoại, lead, nhu cầu và chất lượng tư vấn.", metadata: { answer: "Dashboard có thể theo dõi số hội thoại, số lead, tỷ lệ lấy thông tin, nhu cầu phổ biến, câu hỏi bot chưa trả lời tốt và các KPI phục vụ quản lý sale/tư vấn." }, sortOrder: 5 },
+      ],
+    },
+    {
+      section: {
+        sectionType: "cta_footer",
+        title: "Sẵn sàng xem ASA phù hợp với doanh nghiệp của bạn như thế nào?",
+        subtitle: "Đăng ký demo 30 phút để ARAR tư vấn flow chatbot, dữ liệu cần chuẩn bị và phạm vi pilot phù hợp.",
+        sortOrder: 13,
+      },
+      items: [
+        { itemType: "cta", title: "Đăng ký demo ASA 30 phút", linkUrl: "/contact?intent=asa-demo", linkText: "Đăng ký demo ASA 30 phút", sortOrder: 0 },
+        { itemType: "cta", title: "Đăng ký pilot ASA", linkUrl: "/contact?intent=asa-pilot", linkText: "Đăng ký pilot ASA", sortOrder: 1 },
+      ],
+    },
+    {
+      section: {
+        sectionType: "custom",
+        title: "Thông tin nên có trong form đăng ký demo",
+        subtitle: "Form nên ngắn, đủ để ARAR hiểu nhanh nhu cầu và chuẩn bị buổi demo.",
+        sortOrder: 14,
+      },
+      items: [
+        { itemType: "custom", title: "Họ và tên", metadata: { fieldType: "text", required: true }, sortOrder: 0 },
+        { itemType: "custom", title: "Công ty / trường học", metadata: { fieldType: "text", required: true }, sortOrder: 1 },
+        { itemType: "custom", title: "Số điện thoại", metadata: { fieldType: "tel", required: true }, sortOrder: 2 },
+        { itemType: "custom", title: "Email", metadata: { fieldType: "email", required: true }, sortOrder: 3 },
+        { itemType: "custom", title: "Ngành hoạt động", metadata: { fieldType: "select", required: true, options: ["Bán lẻ điện thoại", "Trường học / tuyển sinh", "Bán lẻ khác", "Dịch vụ B2B", "Khác"] }, sortOrder: 4 },
+        { itemType: "custom", title: "Nhu cầu chính", description: "Bán hàng, tuyển sinh, chăm sóc khách hàng, thu lead hoặc tối ưu quy trình tư vấn.", metadata: { fieldType: "textarea", required: false }, sortOrder: 5 },
       ],
     },
   ];
 
   for (const { section, items } of sectionsData) {
-    // Tạo section
     const [createdSection] = await db.insert(landingSections).values({
       landingPageId: page.id,
       ...section,
     }).returning();
-    console.log(`  📦 Section: ${section.sectionType} — ${section.title || "(no title)"}`);
+    console.log(`Section: ${section.sectionType} - ${section.title || "(no title)"}`);
 
-    // Tạo items
     if (items.length > 0) {
       await db.insert(landingItems).values(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         items.map((item) => ({
           sectionId: createdSection.id,
           ...item,
           metadata: (item as Record<string, unknown>).metadata as Record<string, unknown> | null ?? null,
-        })) as any
+        }))
       );
-      console.log(`     └─ ${items.length} items`);
+      console.log(`  Items: ${items.length}`);
     }
   }
 
-  console.log("\n✅ Hoàn tất seed dữ liệu Landing Page!");
-  console.log(`   API: /api/v1/landing/${page.slug}`);
+  console.log("\nHoan tat seed du lieu Landing Page ASA!");
+  console.log(`API: /api/v1/landing/${page.slug}`);
 
   await client.end();
   process.exit(0);
 }
 
 seed().catch((error) => {
-  console.error("❌ Lỗi seed:", error);
+  console.error("Loi seed:", error);
   process.exit(1);
 });
