@@ -25,6 +25,28 @@ function generateSlug(text: string): string {
   return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "d").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
+function parseLines(value: string): string[] {
+  return value
+    .split("\n")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function parseSpecs(value: string): Array<{ label: string; value: string }> {
+  return value
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [label, ...rest] = line.split(":");
+      return {
+        label: label?.trim() || "",
+        value: rest.join(":").trim(),
+      };
+    })
+    .filter((item) => item.label && item.value);
+}
+
 // ============================================================
 // PRODUCT ACTIONS
 // ============================================================
@@ -37,6 +59,10 @@ export async function createProductAction(formData: FormData): Promise<ActionRes
     const fullDescription = formData.get("fullDescription") as string;
     const categoryId = formData.get("categoryId") as string;
     const thumbnailUrl = formData.get("thumbnailUrl") as string;
+    const imageFit = (formData.get("imageFit") as string) || "cover";
+    const benefits = parseLines((formData.get("benefits") as string) || "");
+    const features = parseLines((formData.get("features") as string) || "");
+    const specs = parseSpecs((formData.get("specs") as string) || "");
     const sortOrder = parseInt(formData.get("sortOrder") as string) || 0;
     const isPublished = formData.get("isPublished") === "true";
     const isFeatured = formData.get("isFeatured") === "true";
@@ -57,6 +83,10 @@ export async function createProductAction(formData: FormData): Promise<ActionRes
       categoryId: categoryId || null,
       thumbnailUrl: thumbnailUrl || null,
       images: [],
+      imageFit,
+      benefits,
+      features,
+      specs,
       sortOrder, isPublished, isFeatured,
       seoMeta: seoMeta.metaTitle || seoMeta.metaDescription ? seoMeta : null,
     });
@@ -78,6 +108,10 @@ export async function updateProductAction(id: string, formData: FormData): Promi
     const fullDescription = formData.get("fullDescription") as string;
     const categoryId = formData.get("categoryId") as string;
     const thumbnailUrl = formData.get("thumbnailUrl") as string;
+    const imageFit = (formData.get("imageFit") as string) || "cover";
+    const benefits = parseLines((formData.get("benefits") as string) || "");
+    const features = parseLines((formData.get("features") as string) || "");
+    const specs = parseSpecs((formData.get("specs") as string) || "");
     const sortOrder = parseInt(formData.get("sortOrder") as string) || 0;
     const isPublished = formData.get("isPublished") === "true";
     const isFeatured = formData.get("isFeatured") === "true";
@@ -97,6 +131,10 @@ export async function updateProductAction(id: string, formData: FormData): Promi
       fullDescription: fullDescription || null,
       categoryId: categoryId || null,
       thumbnailUrl: thumbnailUrl || null,
+      imageFit,
+      benefits,
+      features,
+      specs,
       sortOrder, isPublished, isFeatured,
       seoMeta: seoMeta.metaTitle || seoMeta.metaDescription ? seoMeta : null,
     });

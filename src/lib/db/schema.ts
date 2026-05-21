@@ -135,6 +135,12 @@ export const services = pgTable("services", {
   // Ảnh đại diện dịch vụ
   imageUrl: text("image_url"),
 
+  // Cách hiển thị ảnh
+  imageFit: varchar("image_fit", { length: 20 }).default("cover"),
+
+  // Các trụ cột/nhóm nội dung chính của giải pháp
+  pillars: jsonb("pillars").$type<Array<{ title: string; text: string }>>().default([]),
+
   // Thứ tự hiển thị
   sortOrder: integer("sort_order").default(0).notNull(),
 
@@ -211,6 +217,18 @@ export const products = pgTable("products", {
   // Danh sách ảnh bổ sung — lưu dạng JSON array
   images: jsonb("images").$type<string[]>().default([]),
 
+  // Cách hiển thị ảnh
+  imageFit: varchar("image_fit", { length: 20 }).default("cover"),
+
+  // Giá trị/lợi ích chính
+  benefits: jsonb("benefits").$type<string[]>().default([]),
+
+  // Các tính năng nổi bật
+  features: jsonb("features").$type<string[]>().default([]),
+
+  // Bảng thông số hiển thị ở frontend
+  specs: jsonb("specs").$type<Array<{ label: string; value: string }>>().default([]),
+
   // Trạng thái hiển thị
   isPublished: boolean("is_published").default(true).notNull(),
 
@@ -227,6 +245,51 @@ export const products = pgTable("products", {
   // Thứ tự hiển thị
   sortOrder: integer("sort_order").default(0).notNull(),
 
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+});
+
+// ============================================================
+// BẢNG: news_articles — Tin tức / bài viết
+// ============================================================
+export const newsArticles = pgTable("news_articles", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  title: varchar("title", { length: 255 }).notNull(),
+  slug: varchar("slug", { length: 255 }).unique().notNull(),
+  excerpt: text("excerpt"),
+  content: text("content"),
+  coverImageUrl: text("cover_image_url"),
+  imageFit: varchar("image_fit", { length: 20 }).default("cover"),
+  publishedAt: timestamp("published_at", { withTimezone: true }),
+  sortOrder: integer("sort_order").default(0).notNull(),
+  isPublished: boolean("is_published").default(true).notNull(),
+  seoMeta: jsonb("seo_meta").$type<{
+    metaTitle?: string;
+    metaDescription?: string;
+    ogImage?: string;
+  }>(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+});
+
+export const contactSubmissions = pgTable("contact_submissions", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  phone: varchar("phone", { length: 50 }),
+  company: varchar("company", { length: 255 }),
+  message: text("message").notNull(),
+  source: varchar("source", { length: 100 }).default("website-contact").notNull(),
+  status: varchar("status", { length: 30 }).default("new").notNull(),
+  metadata: jsonb("metadata").$type<Record<string, unknown>>(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()
     .notNull(),

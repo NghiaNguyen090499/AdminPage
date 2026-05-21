@@ -80,6 +80,89 @@ export async function getFeaturedProducts() {
   return db.select().from(products).where(eq(products.isFeatured, true)).orderBy(asc(products.sortOrder));
 }
 
+/** Lấy sản phẩm public kèm thông tin danh mục */
+export async function getPublishedProductsWithCategory() {
+  return db
+    .select({
+      id: products.id,
+      name: products.name,
+      slug: products.slug,
+      shortDescription: products.shortDescription,
+      fullDescription: products.fullDescription,
+      categoryId: products.categoryId,
+      thumbnailUrl: products.thumbnailUrl,
+      images: products.images,
+      imageFit: products.imageFit,
+      benefits: products.benefits,
+      features: products.features,
+      specs: products.specs,
+      isPublished: products.isPublished,
+      isFeatured: products.isFeatured,
+      seoMeta: products.seoMeta,
+      sortOrder: products.sortOrder,
+      createdAt: products.createdAt,
+      updatedAt: products.updatedAt,
+      category: {
+        id: productCategories.id,
+        name: productCategories.name,
+        slug: productCategories.slug,
+        description: productCategories.description,
+        sortOrder: productCategories.sortOrder,
+        createdAt: productCategories.createdAt,
+        updatedAt: productCategories.updatedAt,
+      },
+    })
+    .from(products)
+    .leftJoin(productCategories, eq(products.categoryId, productCategories.id))
+    .where(eq(products.isPublished, true))
+    .orderBy(asc(products.sortOrder));
+}
+
+/** Lấy 1 sản phẩm public theo slug kèm thông tin danh mục */
+export async function getPublishedProductBySlugWithCategory(slug: string) {
+  const results = await db
+    .select({
+      id: products.id,
+      name: products.name,
+      slug: products.slug,
+      shortDescription: products.shortDescription,
+      fullDescription: products.fullDescription,
+      categoryId: products.categoryId,
+      thumbnailUrl: products.thumbnailUrl,
+      images: products.images,
+      imageFit: products.imageFit,
+      benefits: products.benefits,
+      features: products.features,
+      specs: products.specs,
+      isPublished: products.isPublished,
+      isFeatured: products.isFeatured,
+      seoMeta: products.seoMeta,
+      sortOrder: products.sortOrder,
+      createdAt: products.createdAt,
+      updatedAt: products.updatedAt,
+      category: {
+        id: productCategories.id,
+        name: productCategories.name,
+        slug: productCategories.slug,
+        description: productCategories.description,
+        sortOrder: productCategories.sortOrder,
+        createdAt: productCategories.createdAt,
+        updatedAt: productCategories.updatedAt,
+      },
+    })
+    .from(products)
+    .leftJoin(productCategories, eq(products.categoryId, productCategories.id))
+    .where(eq(products.slug, slug))
+    .limit(1);
+
+  const product = results[0] ?? null;
+  if (!product || !product.isPublished) {
+    return null;
+  }
+
+  return product;
+}
+
 /** Tạo sản phẩm mới */
 export async function createProduct(data: NewProduct) {
   const results = await db.insert(products).values({ ...data, updatedAt: new Date() }).returning();

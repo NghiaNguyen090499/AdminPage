@@ -62,6 +62,8 @@ export async function PUT(request: Request, context: RouteContext) {
       fullDescription: body.fullDescription !== undefined ? body.fullDescription : existing.fullDescription,
       icon: body.icon !== undefined ? body.icon : existing.icon,
       imageUrl: body.imageUrl !== undefined ? body.imageUrl : existing.imageUrl,
+      imageFit: body.imageFit ?? existing.imageFit,
+      pillars: body.pillars !== undefined ? body.pillars : existing.pillars,
       sortOrder: body.sortOrder ?? existing.sortOrder,
       isPublished: body.isPublished ?? existing.isPublished,
       seoMeta: body.seoMeta !== undefined ? body.seoMeta : existing.seoMeta,

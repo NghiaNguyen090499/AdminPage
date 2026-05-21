@@ -52,6 +52,8 @@ export async function POST(request: Request) {
       fullDescription: body.fullDescription || null,
       icon: body.icon || null,
       imageUrl: body.imageUrl || null,
+      imageFit: body.imageFit || "cover",
+      pillars: body.pillars || [],
       sortOrder: body.sortOrder || 0,
       isPublished: body.isPublished ?? true,
       seoMeta: body.seoMeta || null,

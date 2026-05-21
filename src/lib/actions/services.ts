@@ -38,6 +38,21 @@ function generateSlug(text: string): string {
     .replace(/^-|-$/g, "");
 }
 
+function parsePillars(value: string): Array<{ title: string; text: string }> {
+  return value
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [title, ...rest] = line.split(":");
+      return {
+        title: title?.trim() || "",
+        text: rest.join(":").trim(),
+      };
+    })
+    .filter((item) => item.title && item.text);
+}
+
 /**
  * Tạo dịch vụ mới
  * @input  : formData (FormData)
@@ -53,6 +68,8 @@ export async function createServiceAction(
     const fullDescription = formData.get("fullDescription") as string;
     const icon = formData.get("icon") as string;
     const imageUrl = formData.get("imageUrl") as string;
+    const imageFit = (formData.get("imageFit") as string) || "cover";
+    const pillars = parsePillars((formData.get("pillars") as string) || "");
     const sortOrder = parseInt(formData.get("sortOrder") as string) || 0;
     const isPublished = formData.get("isPublished") === "true";
 
@@ -79,6 +96,8 @@ export async function createServiceAction(
       fullDescription: fullDescription || null,
       icon: icon || null,
       imageUrl: imageUrl || null,
+      imageFit,
+      pillars,
       sortOrder,
       isPublished,
       seoMeta: seoMeta.metaTitle || seoMeta.metaDescription ? seoMeta : null,
@@ -121,6 +140,8 @@ export async function updateServiceAction(
     const fullDescription = formData.get("fullDescription") as string;
     const icon = formData.get("icon") as string;
     const imageUrl = formData.get("imageUrl") as string;
+    const imageFit = (formData.get("imageFit") as string) || "cover";
+    const pillars = parsePillars((formData.get("pillars") as string) || "");
     const sortOrder = parseInt(formData.get("sortOrder") as string) || 0;
     const isPublished = formData.get("isPublished") === "true";
 
@@ -145,6 +166,8 @@ export async function updateServiceAction(
       fullDescription: fullDescription || null,
       icon: icon || null,
       imageUrl: imageUrl || null,
+      imageFit,
+      pillars,
       sortOrder,
       isPublished,
       seoMeta: seoMeta.metaTitle || seoMeta.metaDescription ? seoMeta : null,

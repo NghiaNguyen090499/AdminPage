@@ -13,6 +13,7 @@
     "db:studio": "dotenv -e .env.local -- drizzle-kit studio",
     "db:test": "npx tsx scripts/test-db.ts",
     "db:seed": "npx tsx scripts/seed-data.ts",
+    "seed:arar": "npx dotenv -e .env.local -- npx tsx scripts/seed-arar-content.ts",
     "admin:create": "npx tsx scripts/create-admin.ts",
     "storage:setup": "npx tsx scripts/setup-storage.ts",
     "seed:landing": "npx dotenv -e .env.local -- npx tsx scripts/seed-landing.ts"

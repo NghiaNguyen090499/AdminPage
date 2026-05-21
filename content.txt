@@ -1,0 +1,511 @@
+Dưới đây là cấu trúc content nên đưa lên **landing page ASA**. Mục tiêu của landing page không phải chỉ “giới thiệu sản phẩm”, mà phải **thuyết phục khách B2B để lại thông tin / đặt lịch demo**.
+
+# 1. Mục tiêu của landing page ASA
+
+Landing page cần trả lời nhanh 5 câu hỏi:
+
+1. **ASA là gì?**
+2. **ASA giải quyết vấn đề gì cho doanh nghiệp?**
+3. **ASA phù hợp với ngành nào?**
+4. **ASA hoạt động như thế nào?**
+5. **Tại sao khách nên đăng ký demo với ARAR?**
+
+CTA chính nên là:
+
+> **Đăng ký demo ASA 30 phút**
+
+CTA phụ:
+
+> **Nhận tư vấn flow chatbot cho doanh nghiệp của bạn**
+
+---
+
+# 2. Cấu trúc landing page đề xuất
+
+## Section 1 — Hero: Thông điệp chính
+
+Đây là phần đầu tiên khách nhìn thấy. Cần cực kỳ rõ.
+
+### Headline đề xuất
+
+> **ASA – AI Sales Assistant giúp doanh nghiệp tư vấn khách hàng 24/7 và không bỏ lỡ lead online**
+
+### Sub-headline
+
+> ASA tự động trả lời khách hàng, tư vấn theo nhu cầu, thu thập thông tin lead và chuyển dữ liệu cho đội sale/tư vấn xử lý tiếp.
+
+### CTA
+
+> **Đăng ký demo 30 phút**
+
+### Supporting text
+
+> Phù hợp cho chuỗi bán lẻ, chuỗi điện thoại, trường học, trung tâm giáo dục và các doanh nghiệp có nhiều khách hàng hỏi qua Facebook, Zalo, website.
+
+---
+
+## Section 2 — Vấn đề của khách hàng
+
+Phần này phải đánh thẳng vào pain point.
+
+### Tiêu đề
+
+> **Doanh nghiệp đang mất lead online mỗi ngày mà không nhận ra**
+
+### Nội dung nên đưa
+
+Khách hàng thường rời đi khi:
+
+* Inbox không được trả lời ngay.
+* Nhân viên tư vấn quá tải vào giờ cao điểm.
+* Câu hỏi lặp lại quá nhiều: giá, sản phẩm, học phí, lịch tư vấn, chính sách.
+* Không thu được số điện thoại, nhu cầu, ngân sách hoặc thông tin khách hàng.
+* Dữ liệu hội thoại rời rạc, khó đo hiệu quả sale.
+* Chất lượng tư vấn không đồng đều giữa các nhân viên.
+
+### Câu chốt
+
+> Với ASA, mỗi cuộc hội thoại online có thể trở thành một cơ hội bán hàng được ghi nhận, phân loại và chuyển tiếp cho đội sale.
+
+---
+
+## Section 3 — ASA là gì?
+
+### Tiêu đề
+
+> **ASA là gì?**
+
+### Nội dung
+
+> ASA là hệ thống AI chatbot hỗ trợ bán hàng và tư vấn khách hàng, được thiết kế cho doanh nghiệp có nhu cầu xử lý nhiều hội thoại online trên Facebook, Zalo, website hoặc các kênh digital khác.
+
+ASA không chỉ trả lời câu hỏi thường gặp. ASA có thể:
+
+* Hiểu nhu cầu khách hàng.
+* Tư vấn sản phẩm/dịch vụ phù hợp.
+* Thu thập thông tin lead.
+* Phân loại mức độ quan tâm của khách.
+* Chuyển thông tin cho đội sale/tư vấn.
+* Tạo dữ liệu để theo dõi KPI tư vấn online.
+
+### Câu định vị quan trọng
+> ASA không phải là chatbot FAQ đơn thuần. ASA là một lớp AI Sales Operator hỗ trợ doanh nghiệp biến hội thoại thành dữ liệu bán hàng.
+
+---
+
+## Section 4 — ASA giúp gì cho doanh nghiệp?
+
+### Tiêu đề
+
+> **Từ hội thoại rời rạc thành hệ thống lead có dữ liệu**
+
+### Bảng nội dung đề xuất
+
+| Trước khi có ASA                 | Sau khi có ASA                                       |
+| -------------------------------- | ---------------------------------------------------- |
+| Khách hỏi nhưng chờ sale trả lời | AI phản hồi ngay 24/7                                |
+| Inbox rời rạc, khó quản lý       | Lead được ghi nhận và phân loại                      |
+| Nhân viên hỏi thiếu thông tin    | ASA tự động hỏi nhu cầu, ngân sách, số điện thoại    |
+| Tư vấn không đồng đều            | Flow tư vấn được chuẩn hóa                           |
+| Không biết khách quan tâm gì     | Dashboard ghi nhận sản phẩm/dịch vụ khách quan tâm   |
+| Khó đo hiệu quả online           | Theo dõi được lead, conversion, chất lượng hội thoại |
+
+---
+
+## Section 5 — Tính năng chính
+
+### Tiêu đề
+
+> **Các tính năng chính của ASA**
+
+Nên chia thành 6 nhóm tính năng.
+
+| Tính năng            | Nội dung                                                                    |
+| -------------------- | --------------------------------------------------------------------------- |
+| AI tư vấn 24/7       | Tự động trả lời khách hàng trên các kênh online                             |
+| Thu thập lead        | Lấy tên, số điện thoại, nhu cầu, ngân sách, khu vực                         |
+| Tư vấn theo dữ liệu  | Gợi ý sản phẩm/dịch vụ dựa trên dữ liệu doanh nghiệp cung cấp               |
+| Phân loại khách hàng | Nhận diện khách nóng, khách đang cân nhắc, khách cần chăm sóc tiếp          |
+| Chuyển sale xử lý    | Gửi thông tin khách hàng cho nhân viên phụ trách                            |
+| Dashboard KPI        | Theo dõi số lead, số hội thoại, tỷ lệ lấy số điện thoại, nhu cầu khách hàng |
+
+---
+
+## Section 6 — Use case theo ngành
+
+Vì trước mắt target là **chuỗi điện thoại** và **trường học liên cấp**, landing page nên có 2 block ngành rõ ràng.
+
+---
+
+## 6.1. ASA cho chuỗi điện thoại
+
+### Tiêu đề
+
+> **ASA cho chuỗi bán lẻ điện thoại**
+
+### Nội dung
+
+ASA có thể hỗ trợ khách hàng hỏi về:
+
+* Giá điện thoại.
+* Tình trạng còn hàng.
+* So sánh iPhone, Samsung, Xiaomi, Oppo.
+* Tư vấn máy theo ngân sách.
+* Tư vấn máy theo nhu cầu: chụp ảnh, chơi game, pin tốt, học tập, làm việc.
+* Chính sách trả góp.
+* Bảo hành, đổi trả.
+* Địa chỉ cửa hàng gần nhất.
+* Thu thập số điện thoại để sale gọi lại.
+
+### Ví dụ hội thoại nên đưa lên page
+
+**Khách:** Em cần mua điện thoại dưới 8 triệu, pin tốt, chụp ảnh ổn.
+**ASA:** Anh/chị ưu tiên máy mới hay máy đã qua sử dụng? Ngoài pin và camera, anh/chị có cần chơi game nhiều không?
+**Khách:** Máy mới, chơi game nhẹ thôi.
+**ASA:** Với ngân sách dưới 8 triệu, ASA gợi ý một số dòng phù hợp. Anh/chị đang ở khu vực nào để em kiểm tra cửa hàng gần nhất và tình trạng còn hàng?
+
+### CTA nhỏ
+
+> **Xem demo ASA cho chuỗi điện thoại**
+
+---
+
+## 6.2. ASA cho trường học liên cấp
+
+### Tiêu đề
+
+> **ASA cho trường học và tuyển sinh**
+
+### Nội dung
+
+ASA có thể hỗ trợ phụ huynh hỏi về:
+
+* Chương trình học.
+* Học phí.
+* Lịch tuyển sinh.
+* Độ tuổi/lớp phù hợp.
+* Cơ sở vật chất.
+* Xe đưa đón.
+* Bán trú/nội trú.
+* Lịch tham quan trường.
+* Quy trình đăng ký tư vấn.
+* Thu thập thông tin phụ huynh và học sinh.
+
+### Ví dụ hội thoại nên đưa lên page
+
+**Phụ huynh:** Trường còn tuyển sinh lớp 1 không?
+**ASA:** Dạ có. Anh/chị cho em hỏi bé sinh năm nào và gia đình mình đang ở khu vực nào ạ?
+**Phụ huynh:** Bé sinh năm 2020, nhà ở Quận 7.
+**ASA:** Em đã ghi nhận thông tin. Anh/chị muốn tìm hiểu chương trình song ngữ hay chương trình chuẩn? Em cũng có thể hỗ trợ đặt lịch tham quan trường trong tuần này.
+
+### CTA nhỏ
+
+> **Xem demo ASA cho tuyển sinh trường học**
+
+---
+
+# 7. ASA hoạt động như thế nào?
+
+### Tiêu đề
+
+> **Quy trình hoạt động của ASA**
+
+Có thể trình bày bằng 5 bước:
+
+```mermaid
+flowchart LR
+    A[Khách hàng nhắn tin] --> B[ASA hiểu nhu cầu]
+    B --> C[ASA tư vấn theo dữ liệu doanh nghiệp]
+    C --> D[ASA thu thập thông tin lead]
+    D --> E[Chuyển sale/tư vấn xử lý]
+    E --> F[Dashboard theo dõi KPI]
+```
+
+### Nội dung diễn giải
+
+1. Khách hàng nhắn tin qua Facebook, Zalo hoặc website.
+2. ASA phân tích câu hỏi và nhận diện nhu cầu.
+3. ASA truy xuất dữ liệu sản phẩm/dịch vụ để tư vấn.
+4. ASA thu thập thông tin quan trọng như tên, số điện thoại, ngân sách, khu vực, nhu cầu.
+5. Đội sale nhận lead và tiếp tục chăm sóc.
+6. Quản lý theo dõi hiệu quả trên dashboard.
+
+---
+
+# 8. Dữ liệu cần chuẩn bị
+
+Phần này rất quan trọng vì khách B2B thường lo “triển khai có phức tạp không”.
+
+### Tiêu đề
+
+> **Doanh nghiệp cần chuẩn bị gì để triển khai ASA?**
+
+### Nội dung
+
+ASA có thể bắt đầu từ các dữ liệu đơn giản:
+
+| Nhóm dữ liệu               | Ví dụ                                               |
+| -------------------------- | --------------------------------------------------- |
+| Dữ liệu sản phẩm/dịch vụ   | Tên sản phẩm, mô tả, giá, chính sách                |
+| Câu hỏi thường gặp         | Giá, bảo hành, học phí, lịch tuyển sinh, địa chỉ    |
+| Chính sách bán hàng/tư vấn | Trả góp, đổi trả, ưu đãi, quy trình đăng ký         |
+| Dữ liệu chi nhánh/cơ sở    | Địa chỉ cửa hàng, cơ sở trường, khu vực phục vụ     |
+| Quy trình chuyển lead      | Ai nhận lead, nhận qua kênh nào, thời gian phản hồi |
+| Kịch bản tư vấn            | Luồng hỏi đáp theo từng nhóm khách hàng             |
+
+### Câu chốt
+
+> ARAR có thể hỗ trợ chuẩn hóa dữ liệu ban đầu để ASA vận hành theo đúng nghiệp vụ của từng doanh nghiệp.
+
+---
+
+# 9. Kênh tích hợp
+
+### Tiêu đề
+
+> **ASA có thể triển khai trên nhiều kênh khách hàng**
+
+Nội dung nên đưa:
+
+* Facebook Messenger
+* Website chatbot
+* Zalo OA, nếu đã sẵn sàng tích hợp
+* Google Sheet / CRM đơn giản
+* Dashboard nội bộ
+* API tích hợp hệ thống riêng, nếu có
+
+Cách viết an toàn:
+
+> ASA có thể triển khai trước trên Facebook Messenger hoặc website chatbot, sau đó mở rộng sang Zalo OA, CRM và các hệ thống dữ liệu nội bộ theo nhu cầu của doanh nghiệp.
+
+---
+
+# 10. Dashboard và KPI
+
+### Tiêu đề
+
+> **Theo dõi hiệu quả tư vấn online bằng KPI rõ ràng**
+
+Nên đưa các KPI sau:
+
+| Nhóm KPI          | Chỉ số                                                             |
+| ----------------- | ------------------------------------------------------------------ |
+| Hội thoại         | Tổng số cuộc trò chuyện, số khách mới, số khách quay lại           |
+| Lead              | Số lead thu được, tỷ lệ lấy số điện thoại, tỷ lệ lead đủ thông tin |
+| Nhu cầu           | Sản phẩm/dịch vụ được hỏi nhiều nhất, ngân sách phổ biến           |
+| Chất lượng tư vấn | Câu hỏi bot chưa trả lời tốt, số lần cần chuyển người thật         |
+| Sale follow-up    | Lead đã xử lý, lead chưa xử lý, thời gian phản hồi                 |
+| Chuyển đổi        | Demo booking, lịch hẹn, khách quan tâm mua hàng/đăng ký            |
+
+### Câu định vị
+
+> ASA không chỉ trả lời khách hàng. ASA giúp doanh nghiệp nhìn thấy dữ liệu bán hàng từ từng cuộc hội thoại.
+
+---
+
+# 11. Quy trình triển khai
+
+### Tiêu đề
+
+> **Quy trình triển khai ASA**
+
+Nên trình bày rõ để khách thấy không quá phức tạp.
+
+| Giai đoạn               | Nội dung                                           | Thời gian gợi ý |
+| ----------------------- | -------------------------------------------------- | --------------: |
+| 1. Khảo sát nhu cầu     | Xác định ngành, kênh online, quy trình sale/tư vấn |        1–2 ngày |
+| 2. Chuẩn hóa dữ liệu    | Thu thập sản phẩm, dịch vụ, FAQ, chính sách        |        2–5 ngày |
+| 3. Thiết kế flow tư vấn | Xây dựng luồng hội thoại theo nghiệp vụ            |        2–4 ngày |
+| 4. Cấu hình ASA         | Tạo chatbot, kết nối dữ liệu, thiết lập kênh       |        3–7 ngày |
+| 5. Test & hiệu chỉnh    | Kiểm tra câu trả lời, sửa lỗi, tối ưu flow         |        3–5 ngày |
+| 6. Go-live & theo dõi   | Vận hành thật, theo dõi KPI, cải tiến hằng tuần    |        Liên tục |
+
+### Câu chốt
+
+> Với dữ liệu đầu vào rõ ràng, ASA có thể triển khai phiên bản pilot trong khoảng 2–3 tuần.
+
+---
+
+# 12. Gói pilot / lời mời demo
+
+Landing page không nhất thiết phải công khai giá chi tiết, nhưng nên có offer rõ.
+
+### Tiêu đề
+
+> **Bắt đầu với một pilot nhỏ trước khi triển khai toàn hệ thống**
+
+### Nội dung
+
+ARAR khuyến nghị doanh nghiệp bắt đầu bằng pilot:
+
+* 1 ngành hàng hoặc 1 nhóm dịch vụ.
+* 1 kênh online chính.
+* 1 bộ dữ liệu sản phẩm/dịch vụ.
+* 1 dashboard KPI cơ bản.
+* 2–4 tuần theo dõi và tối ưu.
+
+### CTA
+
+> **Đăng ký pilot ASA**
+
+Hoặc mềm hơn:
+
+> **Đăng ký tư vấn để xem ASA phù hợp với doanh nghiệp của bạn như thế nào**
+
+---
+
+# 13. Vì sao chọn ARAR?
+
+Phần này cần tạo niềm tin, nhưng không nên viết quá dài.
+
+### Tiêu đề
+
+> **Vì sao doanh nghiệp nên triển khai ASA cùng ARAR?**
+
+Nội dung nên đưa:
+
+* ARAR có kinh nghiệm phát triển giải pháp AI ứng dụng thực tế.
+* Đã triển khai chatbot AI cho lĩnh vực bán lẻ điện thoại.
+* Có năng lực xây dựng hệ thống theo dữ liệu riêng của từng doanh nghiệp.
+* Có khả năng thiết kế dashboard KPI phục vụ quản lý sale.
+* Có đội ngũ kỹ thuật có kinh nghiệm AI, automation và system integration.
+* Không chỉ cung cấp chatbot, mà đồng hành tối ưu luồng tư vấn và hiệu quả vận hành.
+
+Câu viết gọn:
+
+> ARAR không triển khai ASA như một chatbot trả lời tự động đơn thuần. Chúng tôi xây dựng ASA như một hệ thống hỗ trợ vận hành sale, có dữ liệu, KPI và khả năng cải tiến liên tục.
+
+---
+
+# 14. FAQ nên có trên landing page
+
+Nên có khoảng 8–10 câu hỏi.
+
+| Câu hỏi                                           | Ý trả lời                                                                                                      |
+| ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| ASA khác gì chatbot thông thường?                 | ASA tập trung vào tư vấn, thu lead, phân loại nhu cầu và hỗ trợ sale, không chỉ trả lời FAQ.                   |
+| ASA có dùng được cho Facebook không?              | Có, có thể triển khai trên Facebook Messenger và mở rộng sang website/Zalo tùy nhu cầu.                        |
+| Có cần dữ liệu sản phẩm đầy đủ ngay từ đầu không? | Không nhất thiết. Có thể bắt đầu từ bộ dữ liệu cơ bản rồi mở rộng dần.                                         |
+| ASA có thay thế nhân viên sale không?             | Không. ASA hỗ trợ lọc nhu cầu, trả lời ban đầu và chuyển lead tốt hơn cho sale.                                |
+| Thời gian triển khai bao lâu?                     | Pilot thường có thể triển khai trong khoảng 2–3 tuần nếu dữ liệu rõ ràng.                                      |
+| ASA có kết nối tồn kho/CRM không?                 | Có thể tích hợp theo từng giai đoạn, tùy hệ thống hiện có của doanh nghiệp.                                    |
+| ASA có trả lời sai không?                         | ARAR thiết kế cơ chế kiểm soát dữ liệu, giới hạn phạm vi trả lời và ghi nhận câu hỏi chưa chắc chắn để tối ưu. |
+| Có dashboard theo dõi không?                      | Có, dashboard có thể theo dõi hội thoại, lead, nhu cầu, tỷ lệ lấy thông tin và các KPI khác.                   |
+| ASA phù hợp với doanh nghiệp nào?                 | Phù hợp với doanh nghiệp có nhiều khách hàng hỏi online và cần chuẩn hóa quy trình tư vấn.                     |
+| Có thể thử trước không?                           | Có thể bắt đầu bằng demo hoặc pilot nhỏ theo một nhóm sản phẩm/dịch vụ.                                        |
+
+---
+
+# 15. Form đăng ký demo nên hỏi gì?
+
+Form không nên quá dài. Đề xuất:
+
+### Trường bắt buộc
+
+* Họ và tên
+* Công ty / trường học
+* Số điện thoại
+* Email
+* Ngành hoạt động
+
+### Trường nên có
+
+* Kênh online đang dùng: Facebook, Zalo, website, hotline
+* Số lượng chi nhánh/cơ sở
+* Nhu cầu chính: bán hàng, tuyển sinh, chăm sóc khách hàng, thu lead
+* Ghi chú thêm
+
+### CTA form
+
+> **Đăng ký demo ASA**
+
+Hoặc:
+
+> **Nhận tư vấn miễn phí**
+
+---
+
+# 16. Cấu trúc landing page hoàn chỉnh
+
+Tôi đề xuất thứ tự cuối cùng như sau:
+
+1. **Hero**
+
+   * ASA là gì
+   * Lợi ích chính
+   * CTA đăng ký demo
+
+2. **Pain point**
+
+   * Doanh nghiệp mất lead online như thế nào
+
+3. **ASA là gì**
+
+   * AI Sales Assistant, không chỉ là FAQ bot
+
+4. **Lợi ích chính**
+
+   * Trước và sau khi có ASA
+
+5. **Use case theo ngành**
+
+   * Chuỗi điện thoại
+* Trường học liên cấp
+
+6. **Tính năng chính**
+
+   * Tư vấn 24/7, thu lead, phân loại, dashboard
+
+7. **Cách ASA hoạt động**
+
+   * Flow từ khách nhắn tin đến dashboard KPI
+
+8. **Dữ liệu cần chuẩn bị**
+
+   * Sản phẩm, FAQ, chính sách, chi nhánh, quy trình sale
+
+9. **Kênh tích hợp**
+
+   * Facebook, website, Zalo, CRM
+
+10. **Dashboard KPI**
+
+* Lead, hội thoại, nhu cầu, chuyển đổi
+
+11. **Quy trình triển khai**
+
+* 6 bước, pilot 2–3 tuần
+
+12. **Vì sao chọn ARAR**
+
+* AI, automation, triển khai thực tế, dashboard, tối ưu vận hành
+
+13. **FAQ**
+
+14. **Final CTA**
+
+* Đăng ký demo / đăng ký pilot
+
+---
+
+# 17. Bản headline tổng thể nên dùng
+
+Tôi đề xuất dùng bộ thông điệp này:
+
+## Headline chính
+
+> **ASA – AI Sales Assistant giúp doanh nghiệp tư vấn khách hàng 24/7 và không bỏ lỡ lead online**
+
+## Sub-headline
+
+> Tự động trả lời khách hàng, tư vấn theo nhu cầu, thu thập thông tin lead và chuyển dữ liệu cho đội sale/tư vấn xử lý tiếp.
+
+## CTA
+
+> **Đăng ký demo ASA 30 phút**
+
+## One-line positioning
+
+> **ASA biến mỗi cuộc hội thoại online thành một cơ hội bán hàng có dữ liệu.**
+
+Đây là định vị rất phù hợp với giai đoạn hiện tại của ARAR.

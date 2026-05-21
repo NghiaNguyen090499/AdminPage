@@ -31,6 +31,14 @@ export function ProductForm({ initialData, categories }: ProductFormProps) {
   const [fullDesc, setFullDesc] = useState(initialData?.fullDescription ?? "");
   const [categoryId, setCategoryId] = useState(initialData?.categoryId ?? "");
   const [thumbnailUrl, setThumbnailUrl] = useState(initialData?.thumbnailUrl ?? "");
+  const [imageFit, setImageFit] = useState(initialData?.imageFit ?? "cover");
+  const [benefits, setBenefits] = useState((initialData?.benefits ?? []).join("\n"));
+  const [features, setFeatures] = useState((initialData?.features ?? []).join("\n"));
+  const [specs, setSpecs] = useState(
+    (initialData?.specs ?? [])
+      .map((item) => `${item.label}: ${item.value}`)
+      .join("\n")
+  );
   const [sortOrder, setSortOrder] = useState(initialData?.sortOrder ?? 0);
   const [isPublished, setIsPublished] = useState(initialData?.isPublished ?? true);
   const [isFeatured, setIsFeatured] = useState(initialData?.isFeatured ?? false);
@@ -48,6 +56,7 @@ export function ProductForm({ initialData, categories }: ProductFormProps) {
     fd.set("name",name); fd.set("slug",slug); fd.set("shortDescription",shortDesc);
     fd.set("fullDescription",fullDesc); fd.set("categoryId",categoryId);
     fd.set("thumbnailUrl",thumbnailUrl); fd.set("sortOrder",String(sortOrder));
+    fd.set("imageFit", imageFit); fd.set("benefits", benefits); fd.set("features", features); fd.set("specs", specs);
     fd.set("isPublished",String(isPublished)); fd.set("isFeatured",String(isFeatured));
     fd.set("seoMetaTitle",seoTitle); fd.set("seoMetaDescription",seoDesc);
     try {
@@ -105,6 +114,25 @@ export function ProductForm({ initialData, categories }: ProductFormProps) {
             label="Hình ảnh sản phẩm"
             description="Ảnh đại diện sản phẩm — hiển thị ở danh sách và trang chi tiết"
           />
+          <div className="space-y-2">
+            <Label htmlFor="imageFit">Kiểu hiển thị ảnh</Label>
+            <select id="imageFit" value={imageFit} onChange={e=>setImageFit(e.target.value)} className="w-full h-9 rounded-md border border-[var(--border)] bg-[var(--background)] px-3 text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--ring)]">
+              <option value="cover">Cover</option>
+              <option value="contain">Contain</option>
+            </select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="benefits">Benefits / Lợi ích</Label>
+            <Textarea id="benefits" value={benefits} onChange={e=>setBenefits(e.target.value)} placeholder="Mỗi dòng là một lợi ích..." className="min-h-[120px]" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="features">Features / Tính năng</Label>
+            <Textarea id="features" value={features} onChange={e=>setFeatures(e.target.value)} placeholder="Mỗi dòng là một tính năng..." className="min-h-[120px]" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="specs">Specs / Thông số</Label>
+            <Textarea id="specs" value={specs} onChange={e=>setSpecs(e.target.value)} placeholder="Mỗi dòng theo dạng Label: Value" className="min-h-[140px]" />
+          </div>
         </CardContent>
       </Card>
       <Card>

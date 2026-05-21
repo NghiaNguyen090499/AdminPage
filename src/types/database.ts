@@ -11,6 +11,8 @@ import type {
   services,
   productCategories,
   products,
+  newsArticles,
+  contactSubmissions,
   landingPages,
   landingSections,
   landingItems,
@@ -35,6 +37,14 @@ export type NewProductCategory = InferInsertModel<typeof productCategories>;
 // Products
 export type Product = InferSelectModel<typeof products>;
 export type NewProduct = InferInsertModel<typeof products>;
+
+// News Articles
+export type NewsArticle = InferSelectModel<typeof newsArticles>;
+export type NewNewsArticle = InferInsertModel<typeof newsArticles>;
+
+// Contact Submissions
+export type ContactSubmission = InferSelectModel<typeof contactSubmissions>;
+export type NewContactSubmission = InferInsertModel<typeof contactSubmissions>;
 
 /** Sản phẩm kèm danh mục (khi JOIN) */
 export type ProductWithCategory = Product & {

@@ -48,6 +48,12 @@ export function ServiceForm({ initialData }: ServiceFormProps) {
   const [fullDescription, setFullDescription] = useState(initialData?.fullDescription ?? "");
   const [icon, setIcon] = useState(initialData?.icon ?? "");
   const [imageUrl, setImageUrl] = useState(initialData?.imageUrl ?? "");
+  const [imageFit, setImageFit] = useState(initialData?.imageFit ?? "cover");
+  const [pillars, setPillars] = useState(
+    (initialData?.pillars ?? [])
+      .map((item) => `${item.title}: ${item.text}`)
+      .join("\n")
+  );
   const [sortOrder, setSortOrder] = useState(initialData?.sortOrder ?? 0);
   const [isPublished, setIsPublished] = useState(initialData?.isPublished ?? true);
   const [seoTitle, setSeoTitle] = useState(initialData?.seoMeta?.metaTitle ?? "");
@@ -79,6 +85,8 @@ export function ServiceForm({ initialData }: ServiceFormProps) {
     formData.set("fullDescription", fullDescription);
     formData.set("icon", icon);
     formData.set("imageUrl", imageUrl);
+    formData.set("imageFit", imageFit);
+    formData.set("pillars", pillars);
     formData.set("sortOrder", String(sortOrder));
     formData.set("isPublished", String(isPublished));
     formData.set("seoMetaTitle", seoTitle);
@@ -192,6 +200,23 @@ export function ServiceForm({ initialData }: ServiceFormProps) {
             label="Hình ảnh dịch vụ"
             description="Ảnh minh họa dịch vụ — hiển thị trên trang chi tiết"
           />
+          <div className="space-y-2">
+            <Label htmlFor="imageFit">Kiểu hiển thị ảnh</Label>
+            <select id="imageFit" value={imageFit} onChange={(e) => setImageFit(e.target.value)} className="w-full h-9 rounded-md border border-[var(--border)] bg-[var(--background)] px-3 text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--ring)]">
+              <option value="cover">Cover</option>
+              <option value="contain">Contain</option>
+            </select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="pillars">Pillars / Hạng mục chính</Label>
+            <Textarea
+              id="pillars"
+              value={pillars}
+              onChange={(e) => setPillars(e.target.value)}
+              placeholder="Mỗi dòng theo dạng Tiêu đề: Nội dung"
+              className="min-h-[140px]"
+            />
+          </div>
         </CardContent>
       </Card>
 

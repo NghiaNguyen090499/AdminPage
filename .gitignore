@@ -77,3 +77,4 @@ next-env.d.ts
 
 # Package locks (tùy chọn — có thể bỏ nếu muốn track)
 # package-lock.json
+.vercel
